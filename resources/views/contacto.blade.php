@@ -13,7 +13,11 @@
     <main>
         <h1>Formulario</h1>
         <h2>Ingrese los datos necesarios:</h2>
-        <form action:="" method="post" id="formulario">
+        <form action:="contacto" method="post" id="formulario">
+            
+            <h3>{{ $tipo }}</h3>
+
+            @csrf
             <fieldset>
                 <legend>Nombre</legend>
                 <label for="nombre">Ingrese su nombre: </label>
@@ -22,9 +26,19 @@
             <fieldset>
                 <legend>Correo</legend>
                 <label for="correo">Ingrese su correo: </label>
-                <input id="correo" type="email" name="correoForm" placeholder="Ejemplo: juan@gmail.com" required>
+                <input 
+                    id="correo" 
+                    type="email" 
+                    name="correoForm"
+                    @if($tipo == 'alumno')
+                        value="@alumnos.udg.mx"
+                    @else
+                        value="@gmail.com"
+                    @endif
+                    placeholder="Ejemplo: juan@gmail.com" 
+                    required>
             </fieldset>
-            <fieldset>
+            <!-- <fieldset>
                 <legend>Género</legend>
                 <label for="generoM">Masculino</label>
                 <input id="generoM" type="radio" name="generoForm" value ="masculino" checked>
@@ -59,7 +73,7 @@
                 <legend>Me interesa contratarte!</legend>
                 <label for="contratar">Estoy interesado en contratarte! </label>
                 <input id="contratar" type="checkbox" name="contratarForm" form="formulario">
-            </fieldset>
+            </fieldset> -->
             <button type="submit">Enviar</button>
         </form>
 
