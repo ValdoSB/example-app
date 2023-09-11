@@ -12,6 +12,18 @@
     </div>
     <main>
         <h1>Formulario</h1>
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+
         <h2>Ingrese los datos necesarios:</h2>
         <form action:="contacto" method="post" id="formulario">
             
@@ -23,6 +35,9 @@
                 <label for="nombre">Ingrese su nombre: </label>
                 <input id="nombre" type="text" name="nombreForm" placeholder="Ejemplo: Juan" required>
             </fieldset>
+            @error('nombreForm')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <fieldset>
                 <legend>Correo</legend>
                 <label for="correo">Ingrese su correo: </label>
@@ -38,6 +53,9 @@
                     placeholder="Ejemplo: juan@gmail.com" 
                     required>
             </fieldset>
+            @error('correoForm')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <!-- <fieldset>
                 <legend>Género</legend>
                 <label for="generoM">Masculino</label>

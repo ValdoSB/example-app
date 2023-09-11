@@ -1,5 +1,9 @@
 <?php
 
+use App\Models\Contacto;
+use App\Models\Tarea;
+use App\Http\Controllers\SitioController;
+use App\Http\Controllers\TareaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,10 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/contacto/{tipo?}', function ($tipo = null) {
-    return view('contacto', compact('tipo'));//->with(['tipo' => $tipo]);
-});
+Route::get('/contacto/{tipo?}', [SitioController::class, 'formContacto']);
+Route::post('/contacto', [SitioController::class, 'saveContacto']);
 
-Route::post('/contacto', function (Request $request) {
-    dd($request->correoForm);
-});
+Route::resource('tarea', TareaController::class);
